@@ -1,0 +1,26 @@
+[project]
+name = "pricing-expert"
+version = "1.0.0"
+description = "Sistema experto de precios dinámicos (Workshop Rule-Based Systems + CLIPS)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "clipspy>=1.0.3",
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.32.0",
+]
+
+[project.scripts]
+pricing-expert = "pricing_expert.cli:main"
+pricing-api = "pricing_expert.api.runner:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

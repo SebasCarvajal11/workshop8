@@ -1,0 +1,19 @@
+# Blueprint: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: rules-workshop8
+    runtime: python
+    plan: free
+    buildCommand: >-
+      pip install -e . &&
+      cd web &&
+      corepack enable &&
+      corepack prepare pnpm@11.1.1 --activate &&
+      pnpm install &&
+      pnpm build
+    startCommand: uvicorn pricing_expert.api.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: NODE_VERSION
+        value: "20.18.0"
