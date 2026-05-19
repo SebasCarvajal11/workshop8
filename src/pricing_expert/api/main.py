@@ -21,6 +21,7 @@ from pricing_expert.catalog import get_product, list_products
 from pricing_expert.catalog_media import sync_product_images
 from pricing_expert.decision import PricingDecision
 from pricing_expert.metrics import ProductMetrics
+from pricing_expert.paths import get_project_root
 from pricing_expert.service import DynamicPricingService
 
 app = FastAPI(
@@ -222,7 +223,7 @@ def api_cart_quote(body: CartQuoteRequest) -> CartQuoteOut:
     return CartQuoteOut(lines=lines_out, subtotal=round(subtotal, 2))
 
 
-_project_root = Path(__file__).resolve().parents[3]
+_project_root = get_project_root()
 _products_public = _project_root / "web" / "public" / "products"
 if _products_public.is_dir():
     app.mount(

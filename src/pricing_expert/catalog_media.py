@@ -6,7 +6,9 @@ import shutil
 import unicodedata
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+from pricing_expert.paths import get_project_root
+
+PROJECT_ROOT = get_project_root()
 PRODUCT_IMAGES_IMPORT_DIR = PROJECT_ROOT / "product-images"
 PRODUCTS_DIR = PROJECT_ROOT / "assets" / "products"
 PUBLIC_PRODUCTS_DIR = PROJECT_ROOT / "web" / "public" / "products"

@@ -4,6 +4,7 @@ import clips
 
 from .decision import DiscountAction, PriceChange, PricingDecision
 from .metrics import ProductMetrics
+from .paths import get_project_root
 from .propositions import PROPOSITION_CODES, PropositionEvaluator, PropositionMap
 
 
@@ -15,7 +16,7 @@ class ClipsPricingEngine:
         rules_path: Path | None = None,
         proposition_evaluator: PropositionEvaluator | None = None,
     ) -> None:
-        root = Path(__file__).resolve().parents[2]
+        root = get_project_root()
         self._rules_path = rules_path or (root / "clips" / "pricing-rules.clp")
         self._proposition_evaluator = proposition_evaluator
         self._env: clips.Environment | None = None

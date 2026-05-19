@@ -31,6 +31,9 @@ RUN pip install --no-cache-dir .
 COPY --from=frontend-builder /app/web/dist ./web/dist
 COPY --from=frontend-builder /app/web/public ./web/public
 
-# Exponer el puerto y arrancar FastAPI
+ENV APP_ROOT=/app
+ENV PORT=8000
 EXPOSE 8000
-CMD ["uvicorn", "pricing_expert.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+# Render inyecta PORT; en local usa 8000 por defecto.
+CMD ["sh", "-c", "uvicorn pricing_expert.api.main:app --host 0.0.0.0 --port ${PORT}"]
