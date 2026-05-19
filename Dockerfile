@@ -1,8 +1,10 @@
 # Etapa 1: Construir el Frontend (React/Vite)
-FROM node:18-alpine AS frontend-builder
+FROM node:22-alpine AS frontend-builder
 WORKDIR /app/web
+
 # Habilitar pnpm
 RUN corepack enable && corepack prepare pnpm@11.1.1 --activate
+
 # Instalar dependencias web y compilar
 COPY web/package.json web/pnpm-lock.yaml web/pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
